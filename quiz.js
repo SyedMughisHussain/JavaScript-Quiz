@@ -66,32 +66,42 @@ console.log(fruits.sort());
 //* Problem 5
 // Write a function 'factorial' that calculates and displays the factorial of a number.
 
+function factorial(number) {
+  let result = 1;
+  for (let i = 2; i <= number; i++) {
+    result *= i;
+  }
+  return result;
+}
+
+let fact = factorial(5);
+console.log(fact);
+
 //* Problem 6
 // Create a function 'reverseString' that takes a string as input and displays the reverse of the input string.
 
-let myFunction = function(string) {
-  let value = '';
+let myFunction = function (string) {
+  let value = "";
   for (let i = string.length - 1; i >= 0; --i) {
     const element = string[i];
     value += element;
   }
   return value;
-}
-myFunction("HelloWorld"); 
-
+};
+myFunction("HelloWorld");
 
 //! Constructor Function
 
 //* Problem 7
 // Create a constructor function 'Person' that takes 'name' and 'age' as parameters and creates person objects. Then, create two person objects and display their details.
 
-function Person(name,age){
+function Person(name, age) {
   this.name = name;
   this.age = age;
 }
 
-const p1 = new Person('Syed Mughis Hussain',20);
-const p2 = new Person('Syed Haseeb Hussain',18);
+const p1 = new Person("Syed Mughis Hussain", 20);
+const p2 = new Person("Syed Haseeb Hussain", 18);
 console.log(p1);
 console.log(p2);
 
@@ -100,7 +110,7 @@ console.log(p2);
 //* Problem 8
 // Write a loop that displays numbers from 1 to 10.
 
-for (let i = 1; i <= 10 ; i++) {
+for (let i = 1; i <= 10; i++) {
   console.log(i);
 }
 
@@ -114,7 +124,7 @@ function sumArrayElements(arrOfNumbers) {
   }
   return sum;
 }
-let numbers = [10,20,30,40,50,60];
+let numbers = [10, 20, 30, 40, 50, 60];
 sumArrayElements(numbers);
 
 //! If-Else Statements
@@ -122,12 +132,11 @@ sumArrayElements(numbers);
 //* Problem 10
 // Write a function 'isEven' that takes a number as input and displays whether the number is even or odd.
 
-function isEven(number){
-  if(number % 2 === 0){
-    return `${number} is Even!`
-  }
-  else{
-    return `${number} is Odd!`
+function isEven(number) {
+  if (number % 2 === 0) {
+    return `${number} is Even!`;
+  } else {
+    return `${number} is Odd!`;
   }
 }
 isEven(2);
@@ -135,22 +144,21 @@ isEven(2);
 //* Problem 11
 // Write a function 'checkVotingEligibility' that takes a person's age as input and displays whether the person is eligible to vote (18 years or older).
 
-function checkVotingEligibility(age){
-  if(age >= 18){
-    return `Eligible to vote!`
-  }
-  else{
-    return `Not Eligible to vote!`
+function checkVotingEligibility(age) {
+  if (age >= 18) {
+    return `Eligible to vote!`;
+  } else {
+    return `Not Eligible to vote!`;
   }
 }
-checkVotingEligibility(15)
+checkVotingEligibility(15);
 
 //! Date
 
 //* Problem 12
 // Write a function 'displayCurrentDateTime' that displays the current date and time.
 
-function displayCurrentDateTime(){
+function displayCurrentDateTime() {
   return Date();
 }
 displayCurrentDateTime();
@@ -160,29 +168,34 @@ displayCurrentDateTime();
 //* Problem 13
 // Write a function 'isPrime' that takes a number as input and displays whether the number is prime or not.
 
-function isPrime(number){
-  if(number){
-    return `Number is prime`
+function isPrime(number) {
+  if (number === 1) {
+    console.log("1 is neither prime nor composite number.");
+  } else if (number > 1) {
+    for (let i = 2; i < number; i++) {
+      if (number % i == 0) {
+        return `${number} is not a prime number.`;
+      }
+    }
   }
-  else{
-    return `Number is not prime`
-  }
+  return `${number} is a prime number.`;
 }
-isPrime(2);
+let prime = isPrime(4);
+console.log(prime);
 
 //* Problem 14
 // Write a function 'squareNumbers' that takes an array of numbers, squares each number, and displays the squared values.
 
-function squareNumbers(arr){
+function squareNumbers(arr) {
   let result = [];
-  for(let i=0; i < arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     const element = array[i];
-    let re = Math.pow(element,2);
+    let re = Math.pow(element, 2);
     result.push(re);
   }
   return result;
 }
-let array = [2,3,2,2,3,4];
+let array = [2, 3, 2, 2, 3, 4];
 squareNumbers(array);
 
 //! Strings
@@ -190,14 +203,38 @@ squareNumbers(array);
 //* Problem 15
 // Write a function 'countVowels' that takes a string as input and displays the count of vowels (a, e, i, o, u) in the string.
 
-function countVowels(string){
-  
+function countVowels(string) {
+  let vowels = ["a", "e", "i", "o", "u"];
+  let count = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (vowels.includes(string[i])) {
+      count++;
+    }
+  }
+  return count;
 }
+let res = countVowels("SyedMughisHussain");
+console.log(res);
 
 //! DOM Manipulation
 
 //* Problem 16
 // Create an HTML button with the text "Click Me" and a <div> element. When the button is clicked, change the text of the <div> to "Button Clicked!".
 
+let button = document.querySelector(".change");
+button.addEventListener("click", function () {
+  document.querySelector(".text").innerHTML = "Button Clicked!";
+});
+
 //* Problem 17
 // Create an HTML form with an input field and a submit button. When the form is submitted, display an alert with the text entered in the input field.
+
+let submitButton = document.querySelector(".submit");
+submitButton.addEventListener("click", function () {
+  let text = document.querySelector(".input");
+  if (text.value === "") {
+    alert("You can't leave an empty input field.");
+  } else {
+    alert(text.value);
+  }
+});
